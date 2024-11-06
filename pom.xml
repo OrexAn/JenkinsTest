@@ -69,6 +69,22 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-checkstyle-plugin</artifactId>
+            <version>3.6.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs</artifactId>
+            <version>4.8.6</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>org.owasp</groupId>
+            <artifactId>dependency-check-maven</artifactId>
+            <version>11.1.0</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -85,6 +101,59 @@
                     </excludes>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.6.0</version>
+                <configuration>
+                    <configLocation>/src/main/resources/sun_checks.xml</configLocation>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <!--<goal>check</goal>-->
+                            <goal>checkstyle</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <version>4.8.6.4</version>
+                <configuration>
+                    <threshold>Medium</threshold>
+                    <failOnError>true</failOnError>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <!--<goal>check</goal>-->
+                            <goal>spotbugs</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--<plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <version>11.1.0</version>
+                <configuration>
+                    <assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled>
+                    <skipProvidedScope>true</skipProvidedScope>
+                    <failBuildOnCVSS>10</failBuildOnCVSS>
+                    <skipTestScope>true</skipTestScope>
+                    <skipProvidedScope>true</skipProvidedScope>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <phase>verify</phase>
+                    </execution>
+                </executions>
+            </plugin>-->
         </plugins>
     </build>
 

@@ -4,7 +4,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -21,9 +20,10 @@ public class Product {
     private String code;
     private String description;
 
-    public Product(String name, String code, String description) {
-        this.name = name;
-        this.code = code;
-        this.description = description;
+    public Product(String initialName, String initialCode,
+                   String initialDescription) {
+        this.name = initialName;
+        this.code = initialCode;
+        this.description = initialDescription;
     }
 }

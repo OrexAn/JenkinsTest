@@ -7,28 +7,26 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
-
 @RestController
 public class ProductController {
     private final ProductDAO productDAO;
 
-    public ProductController(ProductDAO productDAO) {
-        this.productDAO = productDAO;
+    public ProductController(ProductDAO initialProductDAO) {
+        this.productDAO = initialProductDAO;
     }
 
     @GetMapping(value = "/product", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Iterable<Product> getProducts(){
+    public Iterable<Product> getProducts() {
         return productDAO.findAll();
     }
 
     @GetMapping(value = "/product/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Product getProducts(@PathVariable long id){
+    public Product getProducts(@PathVariable long id) {
         return productDAO.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("Invalid product id: %s", id)));
     }
 
     @PostMapping(value = "/product", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Product createProduct(@RequestBody Product product){
+    public Product createProduct(@RequestBody Product product) {
         return productDAO.save(product);
     }
 }

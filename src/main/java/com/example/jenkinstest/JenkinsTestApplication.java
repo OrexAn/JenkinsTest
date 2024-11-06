@@ -15,10 +15,10 @@ public class JenkinsTestApplication {
     }
 
     @Bean
-    public CommandLineRunner sampleData(ProductDAO productDAO){
-        return ( args ) -> {
-            productDAO.save( new Product( "Butter", "1234-5678-9012-1111", "Butter for your breakfast" ) );
-            productDAO.save( new Product( "Milk", "1234-5678-9012-2222", "Milk is better with cookies" ) );
+    public CommandLineRunner sampleData(ProductDAO productDAO) {
+        return (args) -> {
+            productDAO.save(new Product("Butter", "1234-5678-9012-1111", "Butter for your breakfast"));
+            productDAO.save(new Product("Milk", "1234-5678-9012-2222", "Milk is better with cookies"));
         };
     }
 

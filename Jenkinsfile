@@ -7,15 +7,30 @@ pipeline {
         pollSCM '* * * * *'
     }
     stages {
-        stage('build') {
+        stage('Compile') {
             steps {
                 sh 'mvn clean'
                 sh 'mvn compile'
             }
         }
-        stage('test') {
+        stage('Checkstyle') {
+            steps {
+                sh 'mvn checkstyle:check'
+            }
+        }
+        stage('Spotbugs') {
+            steps {
+                sh 'mvn spotbugs:check'
+            }
+        }
+        stage('Test') {
             steps {
                 sh 'mvn test'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'mvn package'
             }
         }
     }
