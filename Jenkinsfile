@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        maven 'MAVEN'
+        Maven "maven_home"
     }
     triggers {
         pollSCM '* * * * *'
@@ -9,13 +9,13 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'mwn clean'
-                sh 'mwn compile'
+                sh 'mvn clean'
+                sh 'mvn compile'
             }
         }
         stage('test') {
             steps {
-                sh 'mwn test'
+                sh 'mvn test'
             }
         }
     }
