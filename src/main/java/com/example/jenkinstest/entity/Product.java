@@ -20,9 +20,9 @@ public class Product {
     private String code;
     private String description;
 
-    public Product(String initialName, String initialCode,
+    public Product(String name, String initialCode,
                    String initialDescription) {
-        this.name = initialName;
+        this.name = name;
         this.code = initialCode;
         this.description = initialDescription;
     }
