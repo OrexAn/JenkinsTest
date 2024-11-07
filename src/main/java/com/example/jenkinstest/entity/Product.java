@@ -25,5 +25,7 @@ public class Product {
         this.name = initialName;
         this.code = initialCode;
         this.description = initialDescription;
+        String text = null;
+        System.out.println(text.length());
     }
 }
